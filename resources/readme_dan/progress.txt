@@ -1,0 +1,38 @@
+
+
+change ResponseEntity
+
+    result = ResponseEntity()
+    try:
+
+        result.message="Success"
+        result.success=True
+        result.data=
+    except Exception as e:
+        print str(e)
+        result.success=False
+        result.message=str(e)
+        result.data=None
+    finally:
+        return result
+
+
+
+sf
+31/10
+_AccountManagement
+def register(account_entity,password):
+def update_account(account_entity):
+def get_account(username):
+
+_RequestManagement:
+def create_request(request_entity):
+def update_request(request_entity):
+def get_request(id):
+
+def get_all():
+def get_all_active():
+def get_all_closed():
+def get_all_expired():
+
+def get_all_by_user(username):

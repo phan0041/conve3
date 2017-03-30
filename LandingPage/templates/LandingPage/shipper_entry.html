@@ -1,0 +1,28 @@
+{% load ConvePlatform_extras %}
+
+<div class="container-fluid shipper-entry">
+    <div class="row ">
+        <div class="col-md-2 col-md-offset-1 col-xs-4">
+            <div class="shipper-info">Ngày di chuyển</div>
+            <div class="shipper-date"> {{ shipper.date|date:"d" }}/{{ shipper.date|date:"n" }}</div>
+            <div class="text-muted">Còn <b>{{ shipper.date|dayuntil }} ngày </b> nữa</div>
+        </div>
+        <div class="col-md-5 col-xs-8">
+            <div class="shipper-name"><b>{{ shipper.shipper_name }}</b></div>
+
+            <div class="shipper-info">Giá: <b class="shipper-price">{{ shipper.price }}</b></div>
+
+            <div class="shipper-info">Cân: <b class="shipper-kg">{{ shipper.kg_available }}</b></div>
+
+            <div class="shipper-info">Sdt: <b>{{ shipper.contact }}</b></div>
+            <div class="hidden-lg hidden-md">
+                <hr/>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-8 col-xs-offset-4 col-md-offset-0">
+            <div class="shipper-info"><i>Thông tin phụ: <br></i>{{ shipper.note }}</div>
+            <div class="shipper-info"><i>Liên lạc qua</i> <a href={{ shipper.url }}> Facebook</a></div>
+        </div>
+    </div>
+</div>
+<hr/>

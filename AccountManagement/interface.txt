@@ -1,0 +1,16 @@
+
+/*
+comment
+
+??u tiên thì em vi?t ra func declare mà hôm trc mình agree
+sau khi anh xong ui hòm hòm, lúc a g?n data vào template thì anh g?i service
+anh lên ?ây check ci th? có gì thay ??i
+*/
+
+/*
+
+#return false if fail or return Account object if successful
+#use register method in authentication app for registration, not below method
+def create_account(user,last_name,first_name,email,phone,photo_link,facebook_link,description)
+
+*/

@@ -1,0 +1,41 @@
+
+
+
+Request models
+
+Return enum for several (convert name from type) category(check requirement), country
+thumbnail url: small photo url generate from big photo
+status enum
+
+expiredate datetime
+asap boolean
+last modify
+
+convert from model object to entity object
+
+
+rename RequestEntity
+
+add request id in RequestEntity
+
+
+from UI, post a new request --> create RequestEntity
+
+create
+
+get_all
+get_all_active
+get_all_closed
+get_all_expired
+
+
+status add delete
+
+
+enum lam viec bang so
+
+
+secutiry: csrf_token
+
+Typical authentication put inside ConvePlatform
+

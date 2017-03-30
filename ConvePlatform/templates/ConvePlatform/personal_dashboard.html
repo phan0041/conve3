@@ -1,0 +1,124 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+
+<div class="main-wrapper personal-dashboard" style="min-height: 700px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 left-col">
+                <div class="container-fluid container-custom top" style="min-height: 100px">
+                    <div class="col-md-4" style="height: 100px; background-color: grey"></div>
+                    <div class="col-md-8">
+                        <div class="full-name">{{ account_entity.last_name }} {{ account_entity.first_name }}</div>
+                        <a href="#"><h5>{{ account_entity.username }}</h5></a>
+{#                        <h5>Singapore</h5>#}
+                    </div>
+                </div>
+
+                <div class="container-custom panel panel-default bot">
+                    <div class="panel-heading">
+                        <h4 class="title">Thông tin cá nhân</h4>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Email</h4>
+                        <p>{{ account_entity.email }}</p><br/>
+
+                        <h4>Số điện thoại</h4>
+                        <p>{{ account_entity.first_phone }}</p>
+                        <p>{{ account_entity.second_phone }}</p><br>
+
+                        <h4>Địa chỉ</h4>
+                        <p>{{ account_entity.address }}</p>
+                    </div>
+                </div>
+                {% if owner %}<a href="{% url 'edit-profile' %}"><div class="btn btn-default pull-right">Sửa thông tin cá nhân</div></a>{% endif %}
+            </div>
+            <div class="col-md-8 right-col">
+                <div class="container-custom panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="title">Danh sách hàng đã đăng</h4>
+                    </div>
+
+                    <div class="panel-body">
+                    {% if owner %}
+                        <div class="row panel-body-menu">
+                            <div class="col-md-6 text-center add-more">
+                                <a href="{% url 'create-request' %}">
+                                    <div><span class="glyphicon glyphicon-plus"></span><span>Thêm hàng</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                        <div class="row">
+                        {% if items|length == 0 %}
+                            <div class="col-md-12 text-center no-item-desc">
+                                <p>Tài khoản chưa đăng hàng!</p>
+                            </div>
+                        {% endif %}
+                        {% for item in items %}
+                            <div class="col-md-6 item">
+                                <div class="row">
+                                    <a href="{% url 'detail-request' request_id=item.request_id %}">
+                                        <div class="col-md-4">
+                                        {% if item.thumb_url.0 %}
+                                            <div class="item-thumb" style="background-image: url('{{ item.thumb_url.0 }}')"></div>
+                                        {% else %}
+                                            <img class="img-responsive item-thumb no-thumb" src="{% static 'ConvePlatform/img/no-image.png' %}"/>
+                                        {% endif %}
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h4 class="item-title">{{ item.title }}</h4>
+                                            <div class="item-price">Giá: {{ item.price }} {{ item.price_currency }}</div>
+                                            <div class="item-direction">{{ item.origin_city }} - {{ item.destination_city }}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% if owner %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a href="{% url 'edit-request' request_id=item.request_id %}" class="btn btn-info" style="width: 100%">Sửa</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                        {% if item.status == 1 %}
+                                            <form method="POST" action="{% url 'close-request' %}" class="pull-right" style="margin: 0; width: 100%">
+                                                {% csrf_token %}
+                                                <input name="id" type="hidden" value="{{ item.request_id }}">
+                                                <input type="submit" value="Ngừng đăng" onclick="return confirm('Bạn chắc chắn ngừng đăng yêu cầu này?')"
+                                                        class="btn btn-default close-request-btn" style="width: 100%">
+                                            </form>
+                                        {% elif item.status == 2 %}
+                                            <form method="POST" action="{% url 'open-request' %}" class="pull-right" style="margin: 0; width: 100%">
+                                                {% csrf_token %}
+                                                <input name="id" type="hidden" value="{{ item.request_id }}">
+                                                <input type="submit" value="Đăng lại" class="btn btn-default close-request-btn" style="width: 100%">
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <form method="POST" action="{% url 'delete-request' %}" class="pull-right">
+                                            {% csrf_token %}
+                                            <input name="id" type="hidden" value="{{ item.request_id }}">
+                                            <input type="submit" value="&#xe020" onclick="return confirm('Bạn chắc chắn xóa yêu cầu này? (Không thể khôi phục!) ')"
+                                                    class="glyphicon delete-item-btn">
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

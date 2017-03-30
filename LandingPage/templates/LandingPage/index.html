@@ -1,0 +1,363 @@
+{% extends 'LandingPage/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+<div class="main-wrapper">
+    
+    <div class="landing-page main-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 landing-page-header">
+                       Chuyển hàng Việt Nam - Singapore dễ dàng
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4 landing-page-desc">
+                    <img class="img-responsive landing-page-logo" src="{% static 'img/logo-fulltext-inv-lg.png' %}"/>
+                    <p>Conve là dịch vụ tìm người chuyển hàng quốc tế đầu tiên tại Việt Nam.</p>
+                    <a href="#howitwork-top">Tìm hiểu thêm <span class="glyphicon glyphicon glyphicon-play-circle" aria-hidden="true"></span></a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- ./landing-page -->
+
+    <div class="signup-top main-block">
+        <div class="container text-center">
+            <h2>Bạn muốn sử dụng dịch vụ tiện ích Conve?</h2>
+            <p class="lead text-muted"> Conve hiện vẫn đang được phát triển nhưng bạn có thể đăng kí miễn phí ngay
+                hôm nay để biết tin khi conve chính thức đi vào hoạt động nhé!</p>
+            <div class="register">
+                <div class="register-form-option">
+                    <span class="">Bạn thấy mình là:</span>
+                    <span class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="register-shipper" autocomplete="off" checked="checked"> Người chuyển hàng
+                      </label>
+                      <label class="btn btn-primary">
+                        <input type="radio" name="options" id="register-buyer" autocomplete="off"> Người cần chuyển hàng
+                      </label>
+                    </span>
+                </div>
+
+                <div class="register-form">
+                    <div class="input-group">
+                      <input id="register-email" type="text" class="form-control" placeholder="Email-Của-Bạn@ví-dụ.com"/>
+                      <span class="input-group-btn">
+                        <button id="register-btn" class="btn btn-success form-control" type="button">Đăng ký</button>
+
+                      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.register-form -->
+
+            </div>
+            
+        </div>
+    </div>
+    <!-- ./signup-top -->
+
+    <div id="howitwork-top" class="howitwork main-block">
+        <div class=" text-center container">
+            <h2 class="col-md-12 howitwork-title">Kết nối mọi người, mọi nơi!</h2>
+            <p class="lead text-muted">Conve kết nối những người muốn chuyển hàng xách tay
+                và những người sắp di chuyển một cách phù hợp, đơn giản và hiệu quả.</p>
+{#            <hr class="half-rule"/>#}
+{#            <!-- ./content -->#}
+{#            <a class="btn btn-custom hidden" role="button" data-toggle="collapse"#}
+{#                            href="#collapse_section" aria-expanded="true" aria-controls="collapse_section" onClick=scroll('#hero-top','#hero-top');>#}
+{#                                Đóng lại và bắt đầu tìm người chuyển hàng!#}
+{#                            </a>#}
+{#            <hr/>#}
+        </div>
+    </div>
+    <!-- ./howitwork-top -->
+
+    <div id="howitwork-buyer" class="howitwork main-block">
+        <div class=" text-center container">
+            <h2 class="col-md-12 howitwork-title">Chuyển hàng nhanh chóng, tiết kiệm</h2>
+            <p class="lead text-muted">Tìm người xách tay hộ một món hàng đôi khi là việc rất khó khăn.
+                Conve được tạo ra để giải quyết khó khăn đó của những người muốn chuyển hàng.
+            </p>
+            <!-- buyer section-->
+            <div class="row content">
+                <div class="col-md-4">
+                    <img src="{% static "img/buyer-1.png" %}" class="img-responsive">
+                    <h3>Có nhu cầu chuyển đồ?</h3>
+                    <p>
+                        Bạn muốn chuyển đồ nhưng không tìm được ai quen sắp di chuyển và có thể giúp bạn
+                        cầm đồ về nhà?</p>
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/buyer-conve.png" %}" class="img-responsive">
+                    <h3>Tìm kiếm và kết nối</h3>
+                    <p>Lên trang web của Conve để tìm và giao dịch với 1 người sắp di chuyển phù hợp với mình.</p>
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/buyer-2.png" %}" class="img-responsive">
+                    <h3>Tiết kiệm chi phí</h3>
+                    <p>Và tuyệt vời, người thân của bạn sẽ nhận được hàng trong vòng 3-5 ngày!</p>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./buyer section-->
+
+    <div id="howitwork-shipper" class="howitwork main-block">
+        <div class=" text-center container">
+            <h2 class="col-md-12 howitwork-title">Tìm kiếm nguồn hàng hiệu quả</h2>
+            <p class="lead text-muted">Nếu bạn có dư hành lý và muốn chuyển đồ hộ người khác để kiếm thêm thu nhập
+                mà không biết tìm người có nhu cầu chuyển đồ ở đâu, Conve sẽ giúp bạn kết nối với những người
+                đó một cách dễ dàng!</p>
+
+            <div class="row content">
+                <div class="col-md-4">
+                    <img src="{% static "img/shipper-1.png" %}" class="img-responsive">
+                    <h3>Bạn là người chuyển đồ?</h3>
+                    <p>Bạn sắp về Việt Nam thăm gia đình và hành lý gửi của bạn dư rất nhiều cân, thật lãng phí! </p>
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/shipper-conve.png" %}" class="img-responsive">
+                    <h3>Kết nối liên tục</h3>
+                    <p>Đăng kí trên trang web của Conve - những người có nhu cầu chuyển hàng sẽ biết và sớm tìm đến bạn! </p>
+                    <p></p>
+                    <p></p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/shipper-2.png" %}" class="img-responsive">
+                    <h3>Thanh toán tiện lợi</h3>
+                    <p>Sau khi di chuyển và giao hàng thành công, bạn đã có thêm 1 ít tiền tiêu vặt cho kì nghỉ này rồi!</p>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./shipper section-->
+
+</div> <!-- ./main-wrapper -->
+{% endblock %}
+
+{#    <div class="hero" id="hero-top">#}
+{#        <div class="hero-bg text-center hidden">#}
+{#            <div class="hero-bg-wrapper">#}
+{#                <img src="{% static 'img/plane.png' %}"/>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="hero-content text-center hidden">#}
+{#            <div class="container">#}
+{#                <div class="row middle text-center">#}
+{#                    <div class="logo-lg"><img src="{% static 'img/logo-lg.png' %}/"></div>#}
+{#                    <div class="slogan">NƠI NGƯỜI TÌM HÀNG, HÀNG TÌM NGƯỜI</div>#}
+{#                    <div class="desc"><strong>CONVE</strong> là nền tảng tiện ích nhất để tìm người xách tay hàng hóa giữa nước ngoài và Việt Nam.</div>#}
+{#                    <a class="btn btn-detail btn-custom hidden" role="button" data-toggle="collapse"#}
+{#                       href="#collapse_section" aria-expanded="true" aria-controls="collapse_section" onClick=scroll('#howitwork','#howitwork'); id="btn-howitwork">#}
+{#                        CONVE hoạt động thế nào?#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="hero-footer text-center hidden">#}
+{#            <div class="hero-footer-content">#}
+{#                <ul class="nav hero-footer-nav bg-grey">#}
+{#                  <li class="nav-header">Tìm người chuyển hàng?</li>#}
+{#                  <li><a class="btn-custom bg-grey" onClick=scroll('#FromHN','#FromHN') id="btn-HNSG">HN-SIN</a></li>#}
+{#                  <li><a class="btn-custom bg-grey" onClick=scroll('#ToHN','#ToHN') id="btn-SGHN">SIN-HN</a></li>#}
+{#                  <li><a class="btn-custom bg-grey" onClick=scroll('#FromHCM','#FromHCM') id="btn-HCMSG">HCM-SIN</a></li>#}
+{#                  <li><a class="btn-custom bg-grey" onClick=scroll('#ToHCM','#ToHCM') id="btn-SGHCM">SIN-HCM</a></li>#}
+{#                </ul>#}
+{#                <div><a class="nav-btn btn-join">Làm người chuyển hàng?</a></div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#    </div>#}
+{##}
+{#    <!-- ./hero -->#}
+{##}
+{#    <div class="banner-register text-center hidden">#}
+{#        <img id="plane-color" src="{% static 'img/color-plane.png' %}"/>#}
+{#        <div class="banner-wrapper container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12 col-xs-12 content">#}
+{#                    Hãy đăng ký để nhận ngay thông tin về những người chuyển hàng và mua hàng thường xuyên ngay khi chúng mình đi vào hoạt động!#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-md-12 col-xs-12 content">#}
+{#                    <div class="col-md-6">#}
+{#                          <input  type="text" class="form-control text-center" value="http://goo.gl/9m4iRn" tabindex="2" aria-describedby="basic-addon1">#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                         <button class="btn btn-custom"><a href="/signup">Đăng ký</a></button>#}
+{#                    </div>#}
+{##}
+{##}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <!-- ./banner-register -->#}
+{##}
+{#    <div class="container-fluid main hide"  id="shipper-tables">#}
+{#        <div class="row">#}
+{#            <div class="col-lg-12">#}
+{#                {% comment %}#}
+{#                <div class="row placeholders">#}
+{##}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-3 placeholder">#}
+{#                        <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="{{ shipper_list_fromHN|length }}">#}
+{#                        <div class="counter ">{{ shipper_list_fromHN|length }}</div>#}
+{#                        <h4 class="btn-default btn" onClick=document.getElementById('FromHN').scrollIntoView()> From Ha Noi</h4>#}
+{#                        <div class="text-muted counter-info">Chuyến bay từ Hà Nội sang Singapore</div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-3 placeholder">#}
+{#                        <div class="counter"> {{ shipper_list_toHN|length }}</div>#}
+{#                        <h4 class="btn-default btn" onClick=document.getElementById('ToHN').scrollIntoView()>To Ha Noi</h4>#}
+{#                        <div class="text-muted counter-info">Chuyến bay từ Singapore tới Hà Nội</div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-3 placeholder">#}
+{#                        <div class="counter">{{ shipper_list_fromHCM|length }}</div>#}
+{#                        <h4 class="btn-default btn" onClick=document.getElementById('FromHCM').scrollIntoView()>From HCM</h4>#}
+{#                        <div class="text-muted counter-info">Chuyến bay từ Hồ Chí Minh sang Singapore</div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-6 col-sm-3 placeholder">#}
+{#                        <div class="counter">{{ shipper_list_toHCM|length }}</div>#}
+{#                        <h4 class="btn-default btn" onClick=document.getElementById('ToHCM').scrollIntoView()>To HCM</h4>#}
+{#                        <div class="text-muted counter-info">Chuyến bay từ Singapore tới Hồ Chí Minh</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% endcomment %}#}
+{#                <!-- ./top div-->#}
+{#                <div class="main-table" id="FromHN">#}
+{#                    <div class="sub-header" align="center">#}
+{#                        <h2>Hà Nội tới Singapore</h2>#}
+{#                        <div class="text-info">Danh sách các chuyến bay từ Hà Nội tới Singapore</div>#}
+{#                    </div>#}
+{#                    {% for entry in shipper_list_fromHN %}#}
+{#                        {% include "LandingPage/shipper_entry.html" with shipper=entry only %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#                <!-- ./#fromHaNoi div-->#}
+{#                <div class="main-table" id="ToHN">#}
+{#                <div class="sub-header" align="center">#}
+{#                    <h2>Singapore về Hà Nội</h2>#}
+{#                    <div class="text-info">Danh sách các chuyến bay từ Singapore về Hà Nội</div>#}
+{#                </div>#}
+{#                {% for entry in shipper_list_toHN %}#}
+{#                    {% include "LandingPage/shipper_entry.html" with shipper=entry only %}#}
+{#                {% endfor %}#}
+{#                </div>#}
+{#                <!-- ./#toHaNoi div-->#}
+{#                <div class="main-table" id="FromHCM">#}
+{#                <div class="sub-header" align="center">#}
+{#                    <h2>Hồ Chí Minh tới Singapore</h2>#}
+{#                    <div class="text-info">Danh sách các chuyến bay từ Hồ Chí Minh tới Singapore</div>#}
+{#                </div>#}
+{#                {% for entry in shipper_list_fromHCM %}#}
+{#                    {% include "LandingPage/shipper_entry.html" with shipper=entry only %}#}
+{#                {% endfor %}#}
+{#                </div>#}
+{#                    <!-- ./#fromHCM div-->#}
+{#                <div class="main-table" id="ToHCM">#}
+{#                <div class="sub-header" align="center">#}
+{#                    <h2>Singapore về Hồ Chí Minh</h2>#}
+{#                    <div class="text-info">Danh sách các chuyến bay từ Singapore về Hồ Chí Minh</div>#}
+{#                </div>#}
+{#                {% for entry in shipper_list_toHCM %}#}
+{#                    {% include "LandingPage/shipper_entry.html" with shipper=entry only %}#}
+{#                {% endfor %}#}
+{#                </div>#}
+{#                <!-- ./#toHCM div-->#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+{##}
+{% block extra-script %}
+<script>
+    $('#register-btn').click(function () {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (regex.test($('#register-email').val()) && $('#register-shipper').is(':checked')) {
+            $('#register-btn').prop("disabled", true);
+            $.ajax({
+                url: "/submit/",
+                method: 'GET', // or another (GET), whatever you need
+                data: {
+                    nonce: "{{ token }}",
+                    email: $('#register-email').val(),
+                    type: "shipper"
+                },
+                success: function (data) {
+                    if (data == "Success")
+                        alert("Đăng ký thành công")
+                    else if (data == "Invalid token")
+                        alert(data)
+                    else if (data == "Error")
+                        alert("Tên miền không phù hợp")
+                    else
+                        alert("Email đã tồn tại");
+                    $('#register-btn').prop("disabled", false);
+                }
+            });
+        }
+        else if (regex.test($('#register-email').val()) && $('#register-buyer').is(':checked')) {
+            $('#register-btn').prop("disabled", true);
+            $.ajax({
+                url: "/submit/",
+                method: 'GET', // or another (GET), whatever you need
+                data: {
+                    nonce: "{{ token }}",
+                    email: $('#register-email').val(),
+                    type: "buyer"
+                },
+                success: function (data) {
+                    if (data == "Success")
+                        alert("Đăng ký thành công")
+                    else if (data == "Invalid token")
+                        alert(data)
+                    else if (data == "Error")
+                        alert("Tên miền không phù hợp")
+                    else
+                        alert("Email đã tồn tại");
+                    $('#register-btn').prop("disabled", false);
+                }
+            });
+        }
+        else if (!regex.test($('#register-email').val())) alert("Không đúng mẫu email")
+        else alert("Bạn là ai");
+    });
+</script>
+{#<script>#}
+{#$(".full-desc").on("shown", function () {#}
+{#    var selected = $(this);#}
+{#    var collapseh = $(".collapse .in").height();#}
+{#    $.scrollTo(selected, 500, {#}
+{#        offset: -(collapseh)#}
+{#    });#}
+{# });#}
+{#function scroll(element, parent){#}
+{#     $(parent).animate({ scrollTop: $(parent).scrollTop() + $(element).offset().top - $(parent).offset().top }, { duration: 'slow', easing: 'swing'});#}
+{#     $('html,body').animate({ scrollTop: $(parent).offset().top }, { duration: 700, easing: 'swing'});#}
+{# }#}
+{##}
+{#</script>#}
+{% endblock extra-script %}
+

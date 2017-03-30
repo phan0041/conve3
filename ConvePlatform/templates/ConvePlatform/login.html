@@ -1,0 +1,43 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+    <div class="main-wrapper login">
+        <div class="container">
+            <div class="col-md-offset-4 col-md-4">
+                <div class="container-fluid container-custom">
+                    <div class="logo">
+                        <img class="img-responsive" src="{% static 'ConvePlatform/img/logo-fulltext-lg.png' %}" style="max-width: 200px; margin:auto"/>
+                    </div>
+                    {% if error_message %}<div class="alert alert-danger">{{ error_message }}</div>{% endif %}
+                    {% include 'ConvePlatform/include/message.html' %}
+                    <form action="{% url 'login' %}" method="post" role="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_username">Tên đăng nhập</label>
+                            {{ form.username.errors }}
+                            {{ form.username }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_password">Mật khẩu</label>
+                            {{ form.password.errors }}
+                            {{ form.password }}
+                            <p><a href="{% url 'reset-password' %}">Quên mật khẩu?</a></p>
+                            <input type="hidden" name="next" value="{{ next }}">
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info" value="Đăng nhập"/>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main-body %}

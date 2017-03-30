@@ -1,0 +1,88 @@
+{% extends 'LandingPage/base.html' %}
+
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+
+{% endblock %}
+
+{% block extra-script %}
+        <script>
+        $(window).bind('resize load', function() {
+            if ($(this).width() < 767) {
+            $('#collapseOne').removeClass('in');
+            $('#collapseOne').addClass('out');
+        } else {
+            $('#collapseOne').removeClass('out');
+            $('#collapseOne').addClass('in');
+                }
+        });
+        function scroll(element, parent){
+            $(parent).animate({ scrollTop: $(parent).scrollTop() + $(element).offset().top - $(parent).offset().top }, { duration: 'slow', easing: 'swing'});
+            $('html,body').animate({ scrollTop: $(parent).offset().top }, { duration: 700, easing: 'swing'});
+        }
+    </script>
+{% endblock %}
+
+{% block main-body %}
+    <div class="top-panel container-fluid">
+        <h1>Hỏi & Đáp</h1>
+        <div class="desc">
+            Nếu bạn muốn tìm hiểu thêm về bọn mình, hãy like facebook page của
+            <a href="https://www.facebook.com/conve.startup">
+                <img src="{% static 'img/fb-icon.png' %}"/> CONVE
+            </a> nhé!
+        </div>
+    </div>
+
+    <div class="about-content container">
+        <div class="row">
+{#            <div class="page-header col-md-12 col-xs-12" align="center">#}
+{##}
+{#                <div class="text-muted">Có gì cần hỏi thì đừng dấu nhé, nếu cảm thấy cần phải hỏi bọn mình#}
+{#                nữa thì cứ pm facebook ấy :">#}
+{#                 Nếu bạn muốn tìm hiểu thêm về bọn mình, xin like facebook page của <a href="https://www.facebook.com/conve.startup"> CONVE </a> nhé!#}
+{#</div>#}
+{##}
+{#            </div>#}
+            <div class="col-md-3 col-xs-12">
+                <div class="accordion" id="accordion2">
+
+                    <div class="accordion-heading">
+                        <div class="accordion-toggle btn btn-default question-btn visible-xs" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                        Các câu hỏi của bạn:
+                        </div>
+                        <div class="text-muted visible-xs">Bấm vào để hiện lên danh sách các câu hỏi bạn nhé</div>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            <ul class="list-group">
+                                <li class="list-group-item question" ><a class="adot" onClick=scroll('#ans1','#ans1')>Bọn mình là ai?</a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans2','#ans2')>Tại sao lại đặt tên là Conve?</a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans3','#ans3')>Làm thế nào để chuyển hàng với CONVE vậy? </a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans4','#ans4')>Mình muốn góp ý cho CONVE, vào đâu bây giờ? </a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans5','#ans5')>Những người chuyển hàng là ai vậy? </a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans6','#ans6')>Mình là người sắp di chuyển và muốn giúp các bạn chuyển hàng, mình phải làm gì? </a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans7','#ans7')>Nếu mình chưa tìm được ngươi chuyển hàng như ý, mình có thể để lại thông tin cho các bạn không? </a></li>
+                                <li class="list-group-item question"><a class="adot" onClick=scroll('#ans8','#ans8')>Làm thế nào để mình có thể tin tưởng người chuyển hàng?</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            </div>
+
+
+            <div class="col-md-8 col-xs-12">
+                <div class="answer" id="ans">
+                    {% with "LandingPage/QA/question"|add:question_id|add:".html" as template %}
+                    {% include "LandingPage/QA/question0.html" %}
+                    {% endwith %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

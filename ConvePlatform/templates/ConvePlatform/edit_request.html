@@ -1,0 +1,146 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+<div class="main-wrapper create-request">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container-fluid container-custom">
+                    <h1>Sửa thông tin chuyển hàng</h1>
+                    <form action="{% url 'edit-request' request_id=item_id|add:"0" %}" method="post" role="form" class="col-md-6 request-content">
+                        {% csrf_token %}
+                        {% if error_message %}<div class="alert alert-danger">{{ error_message }}</div>{% endif %}
+                        <div class="form-group">
+                            <label for="id_title">Tiêu đề *</label>
+                            {{ form.title.errors }}
+                            {{ form.title }}
+                        </div>
+                        <label for="id_category">Loại hàng *</label>
+                        <div class="checkbox">
+                            {{ form.category.errors }}
+                            {{ form.category }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_origin_city">Chuyển từ *</label></br>
+                            {{ form.origin_city.errors }}
+                            {{ form.origin_city }}
+                            {{ form.origin_desc.errors }}
+                            {{ form.origin_desc }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_destination_city">Chuyển tới *</label></br>
+                            {{ form.destination_city.errors }}
+                            {{ form.destination_city }}
+                            {{ form.destination_desc.errors }}
+                            {{ form.destination_desc }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_price">Giá chuyển hàng</label>
+                            <span data-toggle="tooltip" data-placement="right" title="Giá cả để chuyển hàng là không bắt buộc để đăng giao dịch. Tuy nhiên bạn nên cung cấp mức chi trả để tăng khả năng thành công của giao dịch. Mức giá thị trường Singapore - Vietnam hiện tại là 5 SGD/ kg"
+                                  class="glyphicon glyphicon-question-sign"></span></br>
+                            <p>(nhập số)</p>
+                            {{ form.price.errors }}
+                            {{ form.price_currency.errors }}
+                            {{ form.price }}
+                            {{ form.price_currency }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_expiry_date">Cần chuyển trước ngày </label></br>
+                            {{ form.expiry_date.errors }}
+                            {{ form.expiry_date }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_description">Mô tả chi tiết (Không bắt buộc)</label>
+                            {{ form.description.errors }}
+                            {{ form.description }}
+                        </div>
+
+                        {{ form.img_url }}
+                        {{ form.thumb_url }}
+                        {{ form.img_assembly_id }}
+                        <input type="submit" class="btn btn-success" value="Cập nhật hàng"/>
+                        <a type="button" class="btn btn-default" href="{% url 'profile-owner' %}">Hủy Bỏ</a>
+                    </form>
+                    <!-- ./form request-content -->
+
+                    <!-- Thumbnail upload image -->
+                    <div class="col-md-6 request-thumbnail-wrapper">
+                        <label for="thumbnail">Ảnh hàng minh họa</label>
+                    {% if form.cleaned_data.img_url == None or form.cleaned_data.img_url == ''  %}
+                        <div>
+                            <img class="img-responsive no-image" src="{% static 'ConvePlatform/img/no-image.png' %}"
+                                 style="width: 15%; margin:120px auto 120px auto; padding: 10px"/>
+                            <div style="font-style: italic; color:darkgrey">Không có ảnh minh họa</div>
+                        </div>
+                    {% else %}
+                         <img class="img-responsive" src="{{ form.cleaned_data.img_url }}"/>
+                    {% endif %}
+                        <form class="request-thumbnail" id="upload-thumb-form" action="/uploads"
+                              enctype="multipart/form-data" method="POST">
+                            {% csrf_token %}
+                            <input type="file" name="thumbnail" multiple="multiple"/>
+                        </form>
+                    </div>
+                </div>
+                <!-- ./form -->
+            </div>
+        </div>
+    <!-- todo: add recaptcha-->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra-script %}
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+        $( "#id_expiry_date" ).datepicker();
+    });
+    </script>
+    <!-- We include the Transloadit jQuery plugin here -->
+    <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+
+    <!-- We initialize the Transloadit plugin here -->
+    <script type="text/javascript">
+        var uploaded_img;
+        var json_assy = {{ json_assy | safe }};
+        var sign= "{{ sign }}";
+        $(function () {
+            // We reference our HTML form here
+            $('#upload-thumb-form').transloadit({
+                // We want to wait for all encodings to finish before the form
+                // is submitted.
+                wait: true,
+                // The upload to Transloadit should start as soon as the user
+                // selects some files.
+                triggerUploadOnFileSelection: true,
+                autoSubmit : false,
+                // pass json_assy from django view
+                params: json_assy,
+                signature : sign,
+                onSuccess: function(assembly) {
+{# todo: this is just a DEMO. need to rework#}
+                    uploaded_img = assembly;
+                    console.log(assembly);
+                    $(".request-thumbnail").remove();
+{#                    var img_html = '<img class="img-responsive" src="'+assembly.uploads[0].url+'"/>';#}
+                    $(".request-thumbnail-wrapper img").attr('src', assembly.uploads[0].url);
+{#                    $("#id_img_assembly_id").val(assembly.assembly_id);#}
+                    $("#id_img_url").val(assembly.results[':original'][0].url);
+                    $("#id_thumb_url").val(assembly.results['cropped_thumb'][0].url);
+                }
+            });
+        });
+    </script>
+{% endblock extra-script %}

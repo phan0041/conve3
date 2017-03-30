@@ -1,0 +1,19 @@
+.idea/
+*.pyc
+*.egg-info
+*.pot
+*.py[co]
+__pycache__
+MANIFEST
+dist/
+docs/_build/
+docs/locale/
+tests/coverage_html/
+tests/.coverage
+build/
+logs/*.log
+#database
+*.sqlite3
+
+# local setting
+ConvePlatform/local_settings.py

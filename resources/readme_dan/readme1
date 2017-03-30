@@ -1,0 +1,6 @@
+
+
+1. Import sql file in folder root/resources/db/127_0_0_1.sql
+2. Run project
+3. Open and check url in folder root/BackendDevTest/urls.py (to see for step 4)
+4. Test the url open in step 3, if url fail(will failed for creation), change the parameter in url to create successful

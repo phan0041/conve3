@@ -1,0 +1,187 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+<div class="main-wrapper edit-profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-3 left-col">
+                <div class="container-fluid container-custom top" style="min-height: 100px">
+                    <div class="thumbnail-wrapper">
+                        {% if thumb_link == None or thumb_link == '' %}
+                            <img class="img-responsive no-image" src="{% static 'ConvePlatform/img/no-image.png' %}"
+                                 style="width: 30%; margin:30px auto;"/>
+                        {% else %}
+                            <img class="img-responsive" src="{{ thumb_link }}"/>
+                        {% endif %}
+                    </div>
+                    <form class="request-thumbnail" id="upload-thumb-form" action="/uploads"
+                          enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                        <input type="file" name="thumbnail" multiple="multiple"/>
+                    </form>
+                </div>
+
+                <div class="container-custom panel panel-default bot">
+                    <div class="panel-heading">
+                        <h4 class="title">Cài đặt</h4>
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                      <li {% if mode == 1 %}class="active"{% endif %}><a href="{% url 'edit-profile' %}">Cá nhân</a></li>
+                      <li {% if mode == 2 %}class="active"{% endif %}><a href="{% url 'edit-password' %}">Đổi mật khẩu</a></li>
+                      <li><a href="#">Tùy chỉnh khác</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-7 right-col">
+                <div class="container-fluid container-custom">
+                {% if mode == 1 %}
+                    <!-- edit profile info -->
+                    <h2 class="text-center">Thông tin cá nhân</h2>
+
+                    <form action="{% url 'edit-profile' %}" method="post" role="form">
+                        {% if error_message %}<div class="alert alert-danger">{{ error_message }}</div>{% endif %}
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="row">
+                                {{ form.last_name.errors }}
+                                {{ form.first_name.errors }}
+                                <div class="col-md-4">
+                                    <label for="id_last_name">Họ</label>
+                                    {{ form.last_name }}
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="id_first_name">Tên</label>
+                                    {{ form.first_name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Email</label>
+                            {{ form.email.errors }}
+                            {{ form.email }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_address">Địa chỉ liên hệ</label>
+                            {{ form.address.errors }}
+                            {{ form.address }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_phone">Số điện thoại chính</label>
+                            {{ form.phone.errors }}
+                            {{ form.phone }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_extra_phone">Số điện thoại phụ</label>
+                            {{ form.extra_phone.errors }}
+                            {{ form.extra_phone }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_description">Giới thiệu ngắn</label>
+                            {{ form.description.errors }}
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_facebook_link">Tài khoản Facebook</label>
+                            {{ form.facebook_link.errors }}
+                            {{ form.facebook_link }}
+                        </div>
+                        <br/>
+                        {{ form.photo_link }}
+                        {{ form.thumb_link }}
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info" value="Cập nhật"/>
+                        </div>
+                    </form>
+                    <!-- ./form edit-profile -->
+                {% elif mode == 2 %}
+                    <!-- edit profile info -->
+                    <h2 class="text-center">Thay đổi mật khẩu</h2>
+
+                    <form action="{% url 'edit-password' %}" method="post" role="form">
+                        {% if error_message %}<div class="alert alert-danger">{{ error_message }}</div>{% endif %}
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="id_password_old">Mật khẩu hiện tại</label>
+                            {{ form.password_old.errors }}
+                            {{ form.password_old }}
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="id_phone">Mật khẩu mới</label>
+                            {{ form.password_new.errors }}
+                            {{ form.password_new }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_extra_phone">Nhập lại mật khẩu mới</label>
+                            {{ form.retype_password.errors }}
+                            {{ form.retype_password }}
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-info" value="Cập nhật"/>
+                        </div>
+                    </form>
+                    <!-- >/edit profile info -->
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    <!-- todo: add recaptcha-->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra-script %}
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
+    <!-- We include the Transloadit jQuery plugin here -->
+    <script src="//assets.transloadit.com/js/jquery.transloadit2-v2-latest.js"></script>
+
+    <!-- We initialize the Transloadit plugin here -->
+    <script type="text/javascript">
+        var uploaded_img;
+        var json_assy = {{ json_assy | safe }};
+        var sign= "{{ sign }}";
+        $(function () {
+            // We reference our HTML form here
+            $('#upload-thumb-form').transloadit({
+                // We want to wait for all encodings to finish before the form
+                // is submitted.
+                wait: true,
+                // The upload to Transloadit should start as soon as the user
+                // selects some files.
+                triggerUploadOnFileSelection: true,
+                autoSubmit : false,
+                // pass json_assy from django view
+                params: json_assy,
+                signature : sign,
+                onSuccess: function(assembly) {
+                    uploaded_img = assembly;
+                    console.log(assembly);
+                    $(".thumbnail-wrapper img").remove();
+                    var img_html = '<img class="img-responsive" src="'+assembly.uploads[0].url+'"/>';
+                    $(".thumbnail-wrapper").append(img_html);
+                    {# $("#id_img_assembly_id").val(assembly.assembly_id);#}
+
+                    $("#id_photo_link").val(assembly.results[':original'][0].url);
+                    $("#id_thumb_link").val(assembly.results['cropped_thumb'][0].url);
+                }
+            });
+        });
+    </script>
+{% endblock extra-script %}

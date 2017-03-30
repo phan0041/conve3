@@ -1,0 +1,94 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+<div class="main-wrapper browse-request">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 filter-box">
+                <div class="container-fluid container-custom">
+                    <div class="filter-box-header col-md-1 text-center">
+                        <span class="glyphicon glyphicon-filter"></span>
+                    </div>
+                    <div class="filter-box-body col-md-11">
+                        <form method="GET" action="{% url 'browse-request' %}" class="form-inline">
+                            <div class="col-md-3">
+                                <label for="id_origin">Điểm đi</label>
+                                <select id="id_origin" name="origin" class="form-control">
+                                    {% for city in cities %}
+                                        <option value="{{ city.0 }}"
+                                                {% if city.0 == filters.origin|add:"0" %} selected="selected"{% endif %}>
+                                            {{ city.1 }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="id_dest">Điểm đến</label>
+                                <select id="id_dest" name="destination" class="form-control">
+                                    {% for city in cities %}
+                                        <option value="{{ city.0 }}"
+                                                {% if city.0 == filters.destination|add:"0" %} selected="selected"{% endif %}>
+                                            {{ city.1 }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-1"></div>
+{#                            <div class="col-md-3">Sắp xếp</div>#}
+                            <input type="submit" value="Lọc kết quả" class="btn btn-info col-lg-2 pull-right">
+                        </form>
+                    </div>
+                </div>
+                <!-- ./filter -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 browse-request-body">
+                <div class="container-fluid container-custom">
+            {% for item in request %}
+                <div class="item-wrapper col-md-3">
+                    <a class="item" href="{% url 'detail-request' request_id=item.request_id %}">
+                        {% if item.thumb_url.0 %}
+                        <div class="item-thumb">
+                            <img class="img-responsive" src="{{ item.thumb_url.0 }}"/>
+                        </div>
+                        {% else %}
+                            <div class="item-thumb text-center no-image">
+                                <img class="img-responsive"
+                                 src="{% static 'ConvePlatform/img/no-image.png' %}"
+                                 style="width: 30%; height: auto; margin:60px auto;"/>
+                            </div>
+                        {% endif %}
+                        <h4>{{ item.title }}</h4>
+                    </a>
+
+                    <div class="item-direction">
+                        <p>{{ item.origin_city }} - {{ item.destination_city }}</p>
+                    </div>
+                    <div>
+                        <p>
+    {#                        <a class="item-account-id pull-left" href="#"><p>{{ req.account_id }}</p></a>#}
+                            <span title="Cần chuyển trước ngày" class="item-expiry-date"><span class="glyphicon glyphicon-time"></span> {{ item.expired_date|date:"d-m-Y" }}</span>
+                            <span class="item-price pull-right">{{ item.price_currency }} {{ item.price }}</span>
+                        </p>
+                    </div>
+
+                </div>
+            {% endfor %}
+            </div>
+            <!-- ./panel-body -->
+        </div>
+        <!-- ./browse-request-body -->
+        </div>
+    <!-- todo: add recaptcha-->
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+{% load ConvePlatform_extras %}
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+    <div class="request-detail main-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 left-col">
+                    <div class="container-fluid container-custom text-center top">
+                        {% if request.image_url.0 %}
+                            <img class="img-responsive" src="{{ request.image_url.0 }}"/>
+                        {% else %}
+                            <div>
+                                <img class="img-responsive no-image" src="{% static 'ConvePlatform/img/no-image.png' %}"
+                                     style="width: 15%; height: auto; margin-top:120px; padding: 10px"/>
+                                <div style="font-style: italic; color:darkgrey">Không có ảnh minh họa</div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="container-custom panel panel-default bot">
+                        <div class="panel-heading">
+                            <h3>Chi tiết hàng hóa</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Loại mặt hàng</h4>
+                                    <p>{{ request.category|join:", " }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Cần chuyển trước ngày</h4>
+                                    <p title="Ngày - tháng - năm">{{ request.expired_date|date:"d-m-Y" }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Thông tin chi tiết</h4>
+                                    <p>
+                                        {% if request.description %} {{ request.description }}
+                                        {% else %}Không có mô tả chi tiết
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 right-col">
+                    <div class="container-custom panel panel-default">
+                        <div class="panel-body top">
+                            <h2>{{ request.title }}</h2>
+                            <h4 class="requester-id"><a href="{% url 'profile-guest' username=request.username %}"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;{{ request.username }}</a></h4>
+                            <br/>
+
+                            <p class="price">Giá: {% if request.price == "0" %} - {% else %}
+                                {{ request.price }} {% endif %} {{ request.price_currency }}</p>
+
+                            <p class="">
+                                {{ request.origin_city }}
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                {{ request.destination_city }}
+                            </p>
+
+                            <div>Điểm đi: {{ request.origin_address }}, {{ request.origin_city }} </div>
+                            <div>Điểm đến: {{ request.destination_address }}, {{ request.destination_city }} </div>
+                        </div>
+                    </div>
+                    <div class="container-custom panel panel-default bot">
+                        <div class="panel-heading">
+                            <h3>Bình luận</h3>
+                        </div>
+                        <div class="panel-body comment">
+                            {% for comment in comments %}
+                            <p>{{ comment.content }}</p>
+                            <a href="{% url 'profile-guest' username=request.username %}">
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;<span class="username">{{ comment.username }}</span>
+                            </a> - {{ comment.created_date|timedelta }}
+                            <hr/>
+                            {% endfor %}
+                            {% include 'ConvePlatform/include/message.html' %}
+                            <form method="POST" action="{% url 'post-comment' request_id=request.request_id %}" role="form">
+                                {% csrf_token %}
+                                {{ form.content.errors }}
+                                {{ form.content }}
+                                <span style="color:lightgray;">Đăng nhập để đăng bình luận</span><input class="pull-right btn btn-info" type="submit" value="Gửi bình luận" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!-- ./main-wrapper -->
+{% endblock %}
+
+{% block extra-script %}
+
+{% endblock extra-script %}
+

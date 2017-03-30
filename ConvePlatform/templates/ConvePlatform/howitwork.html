@@ -1,0 +1,134 @@
+{% extends 'ConvePlatform/base.html' %}
+{% load staticfiles %}
+
+{% block extra-style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'ConvePlatform/css/style.css' %}"/>
+
+{% endblock %}
+
+{% block main-body %}
+<div class="main-wrapper about-us">
+    <div id="howitwork-top" class="main-block">
+        <div class="text-center container-fluid about-us-title">
+            <h2>CONVE</h2>
+            <br/>
+            <p class="lead"> Nếu bạn có câu hỏi, đừng ngần ngại liên lạc với CONVE tại <b>contact.conve@gmail.com</b> nhé.</p>
+        </div>
+    </div>
+    <!-- ./howitwork-top -->
+    <!--<div class="container text-center" id="howitwork-head">-->
+        <!--<div class="row">-->
+            <!--<h2 class="page-header">Cách thức hoạt động!</h2>-->
+            <!--<p class="lead"> Nếu bạn có câu hỏi nào khác thì đừng ngần ngại liên lạc với conve ở <b>conve.startup@gmail.com</b> nhé.</p>-->
+
+        <!--</div>-->
+    <!--</div>-->
+    <div id="howitwork" class="howitwork main-block">
+        <div class=" text-center container">
+            <h2 class="col-md-12 howitwork-title">Chuyển hàng nhanh chóng, tiết kiệm</h2>
+            <p class="lead text-muted">Tìm người xách tay hộ một món quà về nhà đôi khi là việc không đơn giản.
+                Conve sẽ trở thành cầu nối giữa những người có nhu cầu này với những ai sẵn sàng chuyển hàng.
+            </p>
+            <!-- buyer section-->
+            <div class="row content">
+                <div class="col-md-4">
+                    <img src="{% static "img/buyer-1.png" %}" class="img-responsive">
+                    <h3>Có nhu cầu chuyển đồ?</h3>
+                    <p>
+                        Bạn muốn chuyển đồ nhưng không tìm được ai quen sắp di chuyển và có thể giúp bạn
+                        cầm đồ về nhà?</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/buyer-conve.png" %}" class="img-responsive">
+                    <h3>Tìm kiếm và kết nối</h3>
+                    <p>Lên trang web của Conve để đăng nhu cầu chuyển hàng để những người sắp di chuyển biết và liên hệ với bạn.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/buyer-2.png" %}" class="img-responsive">
+                    <h3>Tiết kiệm chi phí</h3>
+                    <p>Và tuyệt vời, người thân của bạn sẽ nhận được hàng trong vòng 3-5 ngày!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./buyer section-->
+    <div class="howitwork main-block">
+        <div class=" text-center container">
+            <h2 class="col-md-12 howitwork-title">Tìm kiếm nguồn hàng hiệu quả</h2>
+            <p class="lead text-muted">Nếu bạn có dư hành lý và muốn chuyển đồ hộ người khác để kiếm thêm thu nhập
+                mà không biết tìm người có nhu cầu chuyển đồ ở đâu, Conve sẽ giúp bạn kết nối với những người
+                đó một cách dễ dàng!</p>
+
+            <div class="row content">
+                <div class="col-md-4">
+                    <img src="{% static "img/shipper-1.png" %}" class="img-responsive">
+                    <h3>Bạn là người chuyển đồ?</h3>
+                    <p>Bạn sắp về Việt Nam thăm gia đình và hành lý gửi của bạn dư rất nhiều cân, thật lãng phí! </p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/shipper-conve.png" %}" class="img-responsive">
+                    <h3>Kết nối liên tục</h3>
+                    <p>Đăng nhập vào CONVE và bắt đầu tìm kiếm những món hàng cần nhờ chuyển thật dễ dàng!</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{% static "img/shipper-2.png" %}" class="img-responsive">
+                    <h3>Thanh toán tiện lợi</h3>
+                    <p>Sau khi di chuyển và giao hàng thành công, bạn đã có thêm 1 ít tiền tiêu vặt cho kì nghỉ này rồi!</p>
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="faq">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="">Các câu hỏi thường gặp</h2>
+                <p class="lead"> Nếu bạn có câu hỏi nào khác thì đừng ngần ngại liên lạc với conve ở <b>contact.conve@gmail.com</b> nhé.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Conve có phải là công ty chuyển hàng như FedEx hay UPS? </h4>
+                <p>Conve không phải là công ty chuyển hàng như FedEx hay UPS.
+Conve giống như 1 diễn đàn - nơi bạn có thể đăng tin về nhu cầu của mình, và kết nối với những người sắp di chuyển có thể giúp bạn chuyển món đồ đó. Chúng tôi hiện tại không tính phí cũng như không can thiệp tới giao dịch giữa 2 bên.
+</p>
+                <h4>Conve giúp chuyển hàng giữa các tỉnh thành và đất nước nào? </h4>
+                <p>Conve có thể giúp bạn chuyển hàng giữa Singapore và Hà Nội / Hồ Chí Minh.
+Nếu bạn muốn chuyển hàng từ / đến các tỉnh thành khác, bạn phải đợi khi có người di chuyển đến đúng nơi đó và đồng ý chuyển món đồ của bạn, hai bên có thể liên lạc và giao dịch trực tiếp với nhau.</p>
+                <h4>Phí vận chuyển là bao nhiêu? </h4>
+                <p>Phí vận chuyển phụ thuộc vào thoả thuận giữa bạn và người chuyển hàng. </br>
+
+Thông thường, phí chuyển hàng giữa Việt Nam và Singapore phụ thuộc vào cân nặng của hàng hoá: 5 SGD/kg (khoảng 80,000 VND). Với những mặt hàng nhẹ cân nhưng giá trị cao, người chuyển hàng có thể yêu cầu tính chi phí cao hơn. Tùy thuộc vào mặt hàng, bạn có thể chủ động đề nghị những thay đổi trong cách tính giá của họ.</p>
+                <h4>Conve có tính phí dịch vụ không? </h4>
+                <p>Tại thời điểm này, dịch vụ tìm người chuyển hàng của Conve hoàn toàn miễn phí.</p>
+                <h4>Làm thế nào để tìm thông tin và liên lạc với những người sắp di chuyển? </h4>
+                <p>Tại thời điểm này, Conve chưa có hệ thống để những người sắp di chuyển đăng thông tin lên website.
+Vì vậy, bạn cần chủ động đăng tin về nhu cầu chuyển hàng của mình. Những người sắp di chuyển sẽ lên website và liên lạc với bạn nếu họ cảm thấy yêu cầu của bạn phù hợp với lịch trình bay của họ. </br>
+
+Bạn có thể giữ liên lạc với người chuyển hàng qua điện thoại, email hoặc facebook. Chúng tôi đang phát triển hệ thống tin nhắn riêng của Conve để giúp các bạn liên lạc với nhau dễ dàng hơn. </p>
+                <h4>Làm thể nào để biết người chuyển hàng có đáng tin cậy hay không? </h4>
+                <p>Conve sẽ xây dựng 1 hệ thống review  để bạn có thể đánh giá và nhận xét về dịch vụ và thái độ của người chuyển hàng. Dựa vào đó bạn có thể đánh giá độ tin cậy của người chuyển hàng khi sử dụng Conve. </p>
+                <h4>Conve có giới hạn đồ nào được và không được gửi không? </h4>
+                <p>Conve nghiêm cấm tất cả các loại đồ cấm và trái phép theo Luật Hải quan Việt Nam và Singapore. Chúng tôi khuyến khích bạn tham khảo các trang thông tin chính thức của Hải quan Việt Nam và Hải quan Singapore, hoặc <strong><a href="https://www.facebook.com/conve.startup/posts/773613806101116" >phiên bản rút gọn</a></strong> được biên soạn bởi CONVE để hiểu rõ hơn.
+Ngoài ra, cá nhân người chuyển hàng có thể từ chối vận chuyển một số mặt hàng (như đồ tươi sống, mắm, v..v..) nên bạn có thể thương lượng riêng với họ để đạt tới thỏa thuận hợp lý.
+</p>
+                <h4>Conve có chịu trách nhiệm nếu đồ bị thất lạc hay không?</h4>
+                <p>Conve hoàn toàn không can thiệp vào giao dịch giữa 2 bên, vì vậy chúng tôi không chịu trách nhiệm nếu đồ bị hỏng hay thất lạc trong quá trình vận chuyển.
+
+                Để tránh sự cố đáng tiếc xảy ra, Conve khuyến khích các bạn:
+                không nên gửi đồ đắt tiền, dễ bị lấy cắp như tiền mặt, trang sức, v..v..
+                đồ nước, đồ dễ vỡ nên được bọc nhiều lớp cẩn thận để chống va đập, đổ vỡ
+                nắm rõ thông tin cá nhân của người sắp di chuyển (tên tuổi, địa chỉ, số đt…) để chủ động tìm người đó nếu có sự cố xảy ra
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div> <!-- ./main-wrapper -->
+{% endblock %}
+
+{% block extra-script %}
+
+{% endblock extra-script %}
+
